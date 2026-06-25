@@ -101,7 +101,21 @@ Your code must save the final output to the rectified_articles/ directory.
    pip install -r requirements.txt
    ```
 
-2. Configure LLM credentials in `.env` file
+2. Configure LLM credentials in a `.env` file (copy `env.example` to `.env` and fill in the values):
+
+   | Variable | Description | Example |
+   | --- | --- | --- |
+   | `LLM_API_KEY` | API key for the LLM provider | `gsk_...` |
+   | `LLM_API_BASE` | Base URL of the provider's OpenAI-compatible endpoint | `https://api.groq.com/openai/v1` |
+   | `LLM_MODEL_NAME` | LiteLLM model identifier used for rectification | `groq/openai/gpt-oss-120b` |
+
+   > **Note:** If you received the problem statement **along with the API key via direct email**, use the dedicated proxy endpoint and the API key provided in that email instead:
+   >
+   > ```bash
+   > LLM_API_KEY=<the API key from the email>
+   > LLM_API_BASE="https://recllm.brahmastra.tech/"
+   > LLM_MODEL_NAME=openai/gpt-oss-120b
+   > ```
 
 3. Understand the codebase structure by reviewing `rectifier.py`
 
