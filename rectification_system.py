@@ -38,7 +38,7 @@ def run(ai_generated_content: str) -> str:
 
     # Call LLM to rectify the article
     response = completion(
-        model="openai/gpt-oss-120b",
+        model=os.getenv('LLM_MODEL_NAME'),
         messages=[
             {"role": "user", "content": prompt}
         ],
