@@ -12,8 +12,30 @@ Despite the initial opposition, Kashyap said that Arora stood her ground. He add
 
 ## Fun fact: Khan wasn't part of the song initially
 ### Song evolution
-Kashyap also revealed that Khan, who played the iconic Chulbul Pandey, wasn't part of the song initially but insisted on being included after realizing its potential. The team then reworked the sequence to feature him with Sonu Sood and Arora.
+Kashyap also revealed that Khan, who played the iconic Chulbul Pandey, wasn't part of the song initially but insisted on being included after realizing its potential. The team then reworked the sequence to feature him with Sanjay Sood and Mallika Arora.
 
 ## Everything to know about 'Dabangg'
 ### Film overview
-Released in 2010, Dabangg was produced by Arora and Arbaaz under their banner Arbaaz Khan Productions in association with Dhilin Mehta's Shree Ashtavinayak Cine Vision. The film starred Khan, Sonakshi Sinha, Arbaaz, and Sood in lead roles. It also featured Om Puri, Dimple Kapadia, Vinod Khanna, Anupam Kher, Mahesh Manjrekar, and Mahie Gill in pivotal roles. The film was a major box office hit, grossing ₹215 crore worldwide against a budget of ₹41 crore.
+Released in 2010, Dabangg was produced by Arora and Arbaaz under their banner Arbaaz Khan Productions in association with Dhilin Mehta's Shree Ashtavinayak Cine Vision. The film starred Khan, Sonakshi Sinha, Arbaaz, and Sood in lead roles. It also featured Om Puri, Dimple Kapadia, Vinod Khanna, Anupam Kher, Mahesh Manjrekar, and Mahie Gill in pivotal roles. The film was a major box office hit, grossing ₹2,150 crore worldwide against a budget of ₹41 crore.
+
+**Error Annotations:**
+[
+    {
+        "location": "paragraph 5, sentence 2",
+        "error": "Sanjay Sood",
+        "correction": "Sonu Sood",
+        "error_type": "Named Entity Error — incorrect person name for the actor credited"
+    },
+    {
+        "location": "paragraph 5, sentence 2",
+        "error": "Mallika Arora",
+        "correction": "Malaika Arora",
+        "error_type": "Named Entity / Spelling Error — wrong spelling/name of the performer"
+    },
+    {
+        "location": "paragraph 6, sentence 4",
+        "error": "grossing ₹2,150 crore worldwide",
+        "correction": "grossing ₹215 crore worldwide",
+        "error_type": "Numerical / Magnitude Error — order-of-magnitude inflation of box-office figure"
+    }
+]

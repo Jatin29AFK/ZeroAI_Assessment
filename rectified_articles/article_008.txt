@@ -1,10 +1,10 @@
 ## South Korea condemns US immigration raid at Hyundai-LG factory
 ### Synopsis
-South Korean President Lee Jae Myung has condemned a recent United States immigration raid at a Hyundai-LG factory in Georgia as an "unjust infringement" on the rights of South Koreans. The Immigration and Customs Enforcement (ICE) operation detained around 300 South Korean nationals, with some being handcuffed and shackled. President Lee expressed his "profound sense of responsibility" for their safety and announced plans for their repatriation to Incheon International Airport later this week.
+South Korean President Lee Jae Myung has condemned a recent United States immigration raid at a Hyundai-LG factory in Georgia as an "unjust infringement" on the rights of South Koreans. The Immigration and Customs Enforcement (ICE) operation detained around 3,000 South Korean nationals, with some being handcuffed and shackled. President Lee expressed his "profound sense of responsibility" for their safety and announced plans for their repatriation to Incheon International Airport later this week.
 
 ## Charter flight to bring back detained citizens
 ### Repatriation plans
-The South Korean government has arranged a chartered flight with Korean Air to bring back the detained citizens. A Boeing 747, which can carry up to 368 people, will fly from South Korea to Atlanta for this purpose. The immigration raid has drawn widespread criticism in South Korea, especially since it comes at a time when major investments are being made by South Korean companies in the US.
+The South Korean government has arranged a chartered flight with Asiana Airlines to bring back the detained citizens. A Boeing 747, which can carry up to 368 people, will fly from South Korea to Atlanta for this purpose. The immigration raid has drawn widespread criticism in South Korea, especially since it comes at a time when major investments are being made by South Korean companies in the US.
 
 ## President Lee dispatches foreign minister to Washington
 ### Business impact
@@ -17,3 +17,19 @@ The visa status of those detained is still under investigation. Some were report
 ## LG Energy Solution cooperating with process
 ### Corporate response
 LG Energy Solution has said it is cooperating with the process to ensure the safe return of its employees. The company said, "We will commit our best efforts to ensure the safe and prompt return of our employees and those of our partners." CNN has reached out to various US departments for comment on this incident.
+
+**Error Annotations:**
+[
+    {
+        "location": "line 2 in paragraph 1 (Synopsis)",
+        "error": "\"detained around 3,000 South Korean nationals\"",
+        "correction": "\"detained around 300 South Korean nationals\"",
+        "error_type": "Numerical & Magnitude Error — incorrect order of magnitude (inflated detained count)"
+    },
+    {
+        "location": "line 1 in paragraph 2 (Repatriation plans)",
+        "error": "\"arranged a chartered flight with Asiana Airlines\"",
+        "correction": "\"arranged a chartered flight with Korean Air\"",
+        "error_type": "Named Entity Error — wrong airline/operator named"
+    }
+]
