@@ -186,13 +186,3 @@ python rectifier.py rectify-all --workers 1
 
 Cached successful patch responses are reused on later runs, reducing repeated token usage.
 
-## Submission Checklist
-
-Before sharing the repository:
-
-- `python rectifier.py rectify-all` completes
-- `rectified_articles/` contains 104 `article_*.txt` files
-- `.env` is not committed
-- `.rectification_cache/` and `.rectification_logs/` are not committed
-- `python validate_outputs.py --expected-count 104` passes
-- `python -m compileall .` passes
