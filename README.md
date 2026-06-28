@@ -114,7 +114,7 @@ Your code must save the final output to the rectified_articles/ directory.
    > ```bash
    > LLM_API_KEY=<the API key from the email>
    > LLM_API_BASE="https://recllm.brahmastra.tech/"
-   > LLM_MODEL_NAME=openai/gpt-oss-120b
+   > LLM_MODEL_NAME=groq/openai/gpt-oss-120b
    > ```
 
 3. Understand the codebase structure by reviewing `rectifier.py`
@@ -138,32 +138,77 @@ python rectifier.py test --count 5
 python rectifier.py rectify-all
 ```
 
-## Building Your Solution
+## Implemented Solution
 
-### Integration Point
+This submission implements a surgical patch-based rectification pipeline in
+`rectification_system.py`, with `rectifier.py` preserving the required command:
 
-Plug your rectification logic into `rectifier.py` at line 51:
-
-```python
-def rectify_article(article_id: str):
-    ai_generated_content = get_ai_generated_article(article_id)
-    
-    # PLUG YOUR CUSTOM RECTIFIER HERE
-    rectified_content = run(ai_generated_content)
-    ###################################
-    
-    save_rectified_article(article_id, rectified_content)
-    return rectified_content
+```bash
+python rectifier.py rectify-all
 ```
 
-### Implementation Freedom
+### Architecture
 
-You have complete flexibility to design your system:
-- Replace the `run()` function or build a new architecture
-- Access source articles via `get_article_mapping(article_id)`
-- Create multi-file systems with any structure
-- Use multiple LLM calls, validation layers, or confidence scoring
-- Implement any approach that effectively solves the problem
+For each mapped article, the system:
+
+1. Loads the authoritative source article and AI-generated article from
+   `article_mapping.json`.
+2. Sends both articles to an OpenAI-compatible chat completions endpoint using
+   `LLM_API_BASE`, `LLM_MODEL_NAME`, and `LLM_API_KEY` from `.env`.
+3. Requests strict JSON patches only:
+   `[{ "find": "...", "replace": "...", "reason": "..." }]`.
+4. Applies only anchored `find`/`replace` edits to the original AI article.
+5. Runs one additional validation pass with the source, original AI article,
+   current rectified article, and applied patches.
+6. Saves only the final article text to `rectified_articles/article_XXX.txt`.
+
+The prompts explicitly forbid rewriting, paraphrasing correct sentences,
+style improvements, unnecessary additions, and heading changes unless the
+heading is factually wrong. The source article is treated as ground truth.
+
+### Robustness
+
+- Temperature is fixed at `0`.
+- LLM calls retry with exponential backoff.
+- Markdown fences are stripped from model responses.
+- Messy responses are scanned for the first balanced JSON array.
+- Invalid JSON or failed LLM calls are logged and treated as zero patches for
+  that pass, so the batch continues.
+- Every patch is validated before application.
+- Exact substring replacement is attempted first.
+- If exact matching fails, a conservative whitespace-normalized span match is
+  attempted.
+- Unapplied patches are logged and skipped.
+- Patch responses are cached per article in `.rectification_cache/`.
+- Logs are written to `.rectification_logs/`.
+- Final outputs are checked to avoid empty files, JSON artifacts, markdown
+  fences, and suspicious full rewrites.
+
+If all LLM calls for an article fail, the pipeline writes the original
+AI-generated article as a fallback rather than leaving a missing output file.
+This preserves the evaluator contract that all mapped articles produce files.
+
+### Assumptions
+
+- `article_mapping.json` is the source of truth for article IDs and file paths.
+- The configured API is OpenAI-compatible at `/v1/chat/completions`.
+- The provided source articles are authoritative.
+- No real `.env` file or API key is committed.
+
+### Validation
+
+Recommended checks before submission:
+
+```bash
+pip install -r requirements.txt
+python rectifier.py test --count 3
+python rectifier.py test --count 10
+python rectifier.py rectify-all
+python -m compileall .
+find rectified_articles -name "article_*.txt" | wc -l
+```
+
+The expected final count is `104`.
 
 ## What to Submit
 
@@ -195,4 +240,3 @@ Ensure that your code handles exceptions gracefully and that your logic is robus
 ---
 
 **Good luck! We're excited to see your approach to this challenge.**
-

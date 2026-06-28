@@ -63,6 +63,8 @@ dmypy.json
 
 # Project specific
 detected_errors/
+.rectification_cache/
+.rectification_logs/
 rectified_articles/article_011.txt
 rectified_articles/article_012.txt
 rectified_articles/article_013.txt
